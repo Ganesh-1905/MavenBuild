@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      # compile java source code
+      - mvn compile -B
+      # execute unit tests
+      - mvn test -B
+      # create a deployable war file
+      - mvn package -B
+      - cp target/java-example.war ROOT.war
+
+artifacts:
+  files:
+    - ROOT.war
+  discard-paths: yes
+  name: $(date +%Y-%m-%d)
+  base-directory: .
